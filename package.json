@@ -37,6 +37,7 @@
     "apps/**"
   ],
   "dependencies": {
+    "axios": "^0.27.2",
     "express": "4.17.2",
     "tslib": "^2.3.0"
   }
