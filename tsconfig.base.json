@@ -1,12 +1,14 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "strict": true,
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "esModuleInterop": true,
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
@@ -15,7 +17,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@node-lra/core": ["packages/core/src/index.ts"]
+      "@node-lra/core": ["packages/core/src/index.ts"],
+      "@node-lra/express": ["packages/express/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

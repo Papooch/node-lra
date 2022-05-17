@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  lra-coordinator:
+    container_name: lra-coordinator
+    image: jbosstm/lra-coordinator
+    ports:
+      - 8081:8080
