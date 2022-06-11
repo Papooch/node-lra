@@ -4,5 +4,6 @@ services:
   lra-coordinator:
     container_name: lra-coordinator
     image: jbosstm/lra-coordinator
-    ports:
-      - 8081:8080
+    network_mode: host
+    environment:
+      - LOG_LEVEL=TRACE

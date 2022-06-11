@@ -12,25 +12,37 @@ app.get('/api', (req, res) => {
     res.send({ message: 'Welcome to express-sample!' });
 });
 
-const lraClient = new LRAClient({
-    coordinatorUrl: 'http://localhost:8081/lra-coordinator',
-    compensateUrl: 'http://host.docker.internal/compensate',
-});
+const lraClient = new LRAClient('http://localhost:8080/lra-coordinator');
 
 app.use((req, res, next) => {
-    console.log('request', req.method, req.path);
+    console.log('request', req.method, req.path, req.body);
     next();
 });
 
 app.get('/start', async (req, res) => {
-    const result = await lraClient.startLRA('123');
-    res.json({
-        result,
+    const lraId = await lraClient.startLRA('12358', 10_000);
+    const result = await lraClient.joinLRA(lraId, {
+        compensateUrl: 'http://localhost:3333/compensate',
+        completeUrl: 'http://localhost:3333/complete',
     });
+    setTimeout(() => lraClient.closeLRA(lraId), 12_000);
+    res.json({
+        //result,
+    });
+});
+
+app.put('/complete', (req, res) => {
+    console.log('completing!', req.headers);
+    res.status(204).send();
 });
 
 app.put('/compensate', (req, res) => {
     console.log('compensating....', req.headers);
+    res.status(204).send();
+});
+
+app.put('/undefined', (req, res) => {
+    console.log('undefining....', req.headers);
     res.send('compensated');
 });
 
