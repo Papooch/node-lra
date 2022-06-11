@@ -1,4 +1,4 @@
-import { ExpressLRA, getLRAHeader, getParticipantId } from '@node-lra/express';
+import { ExpressLRA, getParticipantId } from '@node-lra/express';
 import express from 'express';
 import { clientBPort, delay, Logger } from './common';
 

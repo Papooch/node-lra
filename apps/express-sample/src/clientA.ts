@@ -15,6 +15,8 @@ const { LRA, LRAErrorHandler } = ExpressLRA({
     logger: logger,
 });
 
+app.get('/ping', (req, res) => res.send('pong'));
+
 app.get(
     '/start',
     LRA({
